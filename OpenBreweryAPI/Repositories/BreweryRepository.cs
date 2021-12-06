@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OpenBreweryAPI.DbContexts;
 using OpenBreweryAPI.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,12 +14,17 @@ namespace OpenBreweryAPI.Repositories
         {
             _openBreweryDbContext = openBreweryDbContext;
         }
-        public async Task<IEnumerable<Brewery>> GetBreweriesAsync()
+        public async Task<IEnumerable<Brewery>> GetBreweriesAsync(string city)
         {
-            return await _openBreweryDbContext.Brewerys.
-                Include(ad => ad.Address).
-                Include(brt => brt.BreweryCategory).
-                ToListAsync();               
+            var breweries = await _openBreweryDbContext.Brewerys.
+               Include(ad => ad.Address).
+               Include(brt => brt.BreweryCategory).
+               ToListAsync();
+            if (!string.IsNullOrEmpty(city))
+            {
+                return breweries.Where(c => c.Address.City == city);
+            }
+            return breweries;
         }
 
         public async Task<Brewery> GetBreweryAsync(int breweryId)
@@ -28,7 +32,7 @@ namespace OpenBreweryAPI.Repositories
             return await _openBreweryDbContext.Brewerys.
                 Include(ad => ad.Address).
                 Include(brt => brt.BreweryCategory).
-                Where(b => b.BreweryId== breweryId).
+                Where(b => b.BreweryId == breweryId).
                 FirstOrDefaultAsync();
         }
 

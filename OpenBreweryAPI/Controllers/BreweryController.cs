@@ -3,21 +3,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OpenBreweryAPI.Models;
 using OpenBreweryAPI.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace OpenBreweryAPI.Controllers
 {
     [ApiController]
-    public class BreweryController:ControllerBase
+    public class BreweryController : ControllerBase
     {
         private readonly ILogger<BreweryController> _logger;
         private readonly IBreweryRepository _breweryRepository;
         private readonly IMapper _mapper;
 
-        public BreweryController(ILogger<BreweryController> logger, 
+        public BreweryController(ILogger<BreweryController> logger,
             IBreweryRepository breweryRepository,
             IMapper mapper)
         {
@@ -28,9 +26,9 @@ namespace OpenBreweryAPI.Controllers
 
         [HttpGet]
         [Route("breweries")]
-        public async Task<ActionResult<IEnumerable<BreweryDto>>> GetBreweries()
+        public async Task<ActionResult<IEnumerable<BreweryDto>>> GetBreweries([FromQuery] string by_City)
         {
-            var breweries = await _breweryRepository.GetBreweriesAsync();           
+            var breweries = await _breweryRepository.GetBreweriesAsync(by_City);
             return Ok(_mapper.Map<IEnumerable<BreweryDto>>(breweries));
 
         }
@@ -40,7 +38,7 @@ namespace OpenBreweryAPI.Controllers
         public async Task<ActionResult<BreweryDto>> GetBrewery(int breweryId)
         {
             var brewery = await _breweryRepository.GetBreweryAsync(breweryId);
-            if(brewery == null)
+            if (brewery == null)
             {
                 return NotFound();
             }
