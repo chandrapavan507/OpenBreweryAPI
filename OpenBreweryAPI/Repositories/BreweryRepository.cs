@@ -22,7 +22,7 @@ namespace OpenBreweryAPI.Repositories
                ToListAsync();
             if (!string.IsNullOrEmpty(city))
             {
-                return breweries.Where(c => c.Address.City == city);
+                return breweries.Where(c => c.Address.City.ToLower() == city.ToLower());
             }
             return breweries;
         }

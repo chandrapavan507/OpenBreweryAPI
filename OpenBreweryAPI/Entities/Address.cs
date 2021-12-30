@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace OpenBreweryAPI.Entities
+﻿namespace OpenBreweryAPI.Entities
 {
     public class Address
     {

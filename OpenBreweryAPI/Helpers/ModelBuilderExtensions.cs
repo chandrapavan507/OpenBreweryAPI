@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OpenBreweryAPI.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace OpenBreweryAPI.Helpers
 {
@@ -34,7 +31,7 @@ namespace OpenBreweryAPI.Helpers
                    State = "Oregon",
                    ZipCode = "97701-9847",
                    Latitude = 44.0912109,
-                   Longitude = - 121.2809536
+                   Longitude = -121.2809536
                },
                new Address
                {
@@ -52,8 +49,8 @@ namespace OpenBreweryAPI.Helpers
             modelBuilder.Entity<BreweryCategory>().HasData(
                 new BreweryCategory
                 {
-                    BreweryCategoryId =1,
-                    Type="medium"
+                    BreweryCategoryId = 1,
+                    Type = "medium"
                 },
                 new BreweryCategory
                 {
@@ -67,18 +64,18 @@ namespace OpenBreweryAPI.Helpers
                 }
                 );
             modelBuilder.Entity<Brewery>().HasData(
-                
-                new Brewery 
+
+                new Brewery
                 {
-                    BreweryId=1,
+                    BreweryId = 1,
                     Name = "10-barrel-brewing-co-bend-1",
-                    BreweryCategoryId =1,
-                    AddressId=1,
-                    WebSiteURL= "http://www.10barrel.com",
-                    CreatedAt =DateTime.UtcNow,
-                    Phone= "5415851007"
+                    BreweryCategoryId = 1,
+                    AddressId = 1,
+                    WebSiteURL = "http://www.10barrel.com",
+                    CreatedAt = DateTime.UtcNow,
+                    Phone = "5415851007"
                 },
-                new Brewery 
+                new Brewery
                 {
                     BreweryId = 2,
                     Name = "10 Torr Distilling and Brewing",
@@ -88,7 +85,7 @@ namespace OpenBreweryAPI.Helpers
                     CreatedAt = DateTime.UtcNow,
                     Phone = "5415851007"
                 },
-                new Brewery 
+                new Brewery
                 {
                     BreweryId = 3,
                     Name = "10 Barrel Brewing Co - Bend Pub",

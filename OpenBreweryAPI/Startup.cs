@@ -33,9 +33,16 @@ namespace OpenBreweryAPI
             services.AddControllers();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IBreweryRepository, BreweryRepository>();
+            var server = Configuration["DbServer"] ?? "localhost";
+            var port = Configuration["DbPort"] ?? "1433"; // Default SQL Server port
+            var user = Configuration["DbUser"] ?? "SA"; // Warning do not use the SA account
+            var password = Configuration["Password"] ?? "Popen123!2021";
+            var database = Configuration["Database"] ?? "openBreweryDb";
             services.AddDbContext<OpenBreweryDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            options.UseSqlServer($"Server={server};Initial Catalog={database};User ID={user};Password={password}");
+
+            //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
             services.AddSwaggerGen(c =>
             {

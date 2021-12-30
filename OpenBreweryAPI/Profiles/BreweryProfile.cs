@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace OpenBreweryAPI.Profiles
 {
-    public class BreweryProfile:Profile
+    public class BreweryProfile : Profile
     {
         public BreweryProfile()
         {
@@ -24,7 +20,7 @@ namespace OpenBreweryAPI.Profiles
              .ForPath(bentity => bentity.WebSiteURL, dto => dto.MapFrom(src => src.Website_url))
             .ReverseMap();
         }
-        
+
 
     }
 }

@@ -7,7 +7,7 @@ namespace OpenBreweryAPI.Entities
     {
         public int BreweryId { get; set; }
         public string Name { get; set; }
-        public int BreweryCategoryId { get; set; }       
+        public int BreweryCategoryId { get; set; }
         public int AddressId { get; set; }
         [Required]
         public string WebSiteURL { get; set; }
